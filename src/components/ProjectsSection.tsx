@@ -6,44 +6,44 @@ const ProjectsSection = () => {
   const projects = [
     {
       name: "BlogTok",
-      description: "A modern blogging platform with real-time features and social interactions",
-      stack: ["React", "Node.js", "MongoDB", "Socket.io"],
-      github: "#",
+      description: "A modern blogging platform with real-time features and social interactions powered with CI/CD",
+      stack: ["HTML/CSS", "Node.js", "MongoDB", "Docker"],
+      github: "https://github.com/Abishek0411/Blogging-Website",
       category: "Full-Stack"
     },
     {
       name: "PlasticDetectYOLO",
       description: "AI-powered plastic waste detection system using YOLO computer vision",
       stack: ["Python", "YOLO", "OpenCV", "TensorFlow"],
-      github: "#",
+      github: "https://github.com/Abishek0411/Underwater-Plastic-Detection",
       category: "AI/ML"
     },
     {
       name: "F1-ProR",
       description: "Formula 1 racing analytics and prediction platform",
-      stack: ["React", "Python", "FastAPI", "PostgreSQL"],
-      github: "#",
+      stack: ["React", "Python", "Streamlit", "FastAPI", "PostgreSQL"],
+      github: "https://github.com/Abishek0411/F1-Race-Strategy-Prediction",
       category: "Analytics"
     },
     {
       name: "Hriday",
       description: "Healthcare management system with patient tracking and analytics",
-      stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-      github: "#",
+      stack: ["React Native", "TypeScript", "Nginx", "Flask", "SVM"],
+      github: "https://github.com/Abishek0411/Hriday-ECG-Tagging",
       category: "Healthcare"
     },
     {
       name: "FITSRM",
       description: "Fitness and health tracking application with personalized recommendations",
-      stack: ["React Native", "Node.js", "MongoDB", "ML"],
-      github: "#",
+      stack: ["React Native", "Python", "MySQL", "Tailwind CSS"],
+      github: "https://github.com/Abishek0411/Fitness_App_Frontend",
       category: "Mobile"
     },
     {
       name: "Skincare AI",
       description: "AI-powered skincare analysis and recommendation system",
-      stack: ["Python", "TensorFlow", "Flask", "OpenCV"],
-      github: "#",
+      stack: ["Python", "TensorFlow", "Flask", "OpenCV", "Raspberry Pi"],
+      github: "https://github.com/Abishek0411/Skincare-Analysis-Frontend",
       category: "AI/ML"
     }
   ];
@@ -82,14 +82,6 @@ const ProjectsSection = () => {
                   {project.category}
                 </span>
               </div>
-              <a 
-                href={project.github}
-                className="text-cyber-blue hover:text-cyber-green transition-colors p-2 hover:bg-cyber-green/10 rounded-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github size={20} />
-              </a>
             </div>
             
             <p className="text-gray-300 text-sm mb-4 leading-relaxed">
@@ -111,6 +103,18 @@ const ProjectsSection = () => {
             <div className="absolute top-4 right-4 text-cyber-green/30 font-orbitron text-3xl font-bold">
               {String(index + 1).padStart(2, '0')}
             </div>
+
+            {/* GitHub icon in bottom right */}
+            <a 
+              href={project.github}
+              className="absolute bottom-1 right-1 text-cyber-blue hover:text-cyber-green transition-colors p-4 hover:bg-cyber-green/10 rounded-full min-w-12 min-h-12 flex items-center justify-center"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.name} on GitHub`}
+            >
+              <Github size={20} />
+            </a>
+
           </div>
         ))}
       </div>
@@ -118,7 +122,7 @@ const ProjectsSection = () => {
       {/* View all projects link */}
       <div className="text-center mt-12">
         <a 
-          href="#" 
+          href="https://github.com/Abishek0411?tab=repositories" 
           className="inline-flex items-center gap-2 text-cyber-purple hover:text-cyber-blue transition-colors font-fira"
         >
           <Github size={16} />

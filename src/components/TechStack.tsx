@@ -4,32 +4,32 @@ const TechStack = () => {
     {
       category: "Languages",
       icon: "💻",
-      techs: ["Python", "JavaScript", "TypeScript", "Java", "C++", "Go"]
+      techs: ["Python", "JavaScript", "TypeScript", "Java", "C/C++"]
     },
     {
       category: "Frontend",
       icon: "🌐",
-      techs: ["React", "Next.js", "Vue.js", "Tailwind CSS", "HTML5", "CSS3"]
+      techs: ["React", "React Native", "Next.js", "Tailwind CSS", "HTML5", "CSS3"]
     },
     {
       category: "Backend",
       icon: "⚙️",
-      techs: ["Node.js", "Express", "Django", "FastAPI", "Spring Boot", "GraphQL"]
+      techs: ["Node.js", "Express", "Flask", "FastAPI"]
     },
     {
       category: "Database",
       icon: "🗄️",
-      techs: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Firebase", "DynamoDB"]
+      techs: ["MongoDB", "PostgreSQL", "MySQL", "SQLite"]
     },
     {
       category: "Cloud & DevOps",
       icon: "☁️",
-      techs: ["AWS", "Docker", "Kubernetes", "Jenkins", "GitHub Actions", "Terraform"]
+      techs: ["AWS", "Docker", "Kubernetes", "Jenkins", "GitHub Actions", "Terraform", "Ansible", "SonarQube"]
     },
     {
       category: "AI/ML",
       icon: "🧠",
-      techs: ["TensorFlow", "PyTorch", "OpenAI", "LangChain", "Scikit-learn", "YOLO"]
+      techs: ["TensorFlow", "PyTorch", "OpenAI", "Scikit-learn", "YOLO"]
     }
   ];
 
@@ -82,7 +82,7 @@ const TechStack = () => {
           <div className="text-cyber-green">
             <span className="text-cyber-purple">const</span> focus = [
             <span className="text-cyber-yellow">"AI/ML"</span>, 
-            <span className="text-cyber-yellow">"Cloud Architecture"</span>, 
+            <span className="text-cyber-yellow">"DevOps"</span>, 
             <span className="text-cyber-yellow">"Full-Stack Development"</span>
             ];
           </div>

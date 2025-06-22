@@ -4,7 +4,7 @@ const ExperienceSection = () => {
     {
       title: "Research Intern",
       company: "UPES University",
-      period: "2023 - Present",
+      period: "2024",
       type: "Research",
       description: [
         "Conducting cutting-edge research in AI/ML applications",

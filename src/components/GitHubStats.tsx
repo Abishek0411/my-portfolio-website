@@ -1,6 +1,6 @@
 
 const GitHubStats = () => {
-  const username = "abisheksr"; // Replace with actual GitHub username
+  const username = "Abishek0411"; // Replace with actual GitHub username
 
   return (
     <section id="github" className="py-20 px-4 max-w-6xl mx-auto">

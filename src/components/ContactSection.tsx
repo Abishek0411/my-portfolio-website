@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Instagram } from 'lucide-react';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:abishek.dev@example.com?subject=Contact from ${formData.name}&body=${formData.message}%0D%0A%0D%0AFrom: ${formData.email}`;
+    const mailtoLink = `mailto:abishekram0411@gmail.com?subject=Contact from ${formData.name}&body=${formData.message}%0D%0A%0D%0AFrom: ${formData.email}`;
     window.location.href = mailtoLink;
   };
 
@@ -27,19 +27,25 @@ const ContactSection = () => {
     {
       name: "GitHub",
       icon: Github,
-      url: "https://github.com/abisheksr",
+      url: "https://github.com/Abishek0411",
       color: "text-cyber-green hover:text-cyber-blue"
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "https://linkedin.com/in/abisheksr",
+      url: "https://linkedin.com/in/abishek-s-r",
+      color: "text-cyber-blue hover:text-cyber-purple"
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      url: "https://instagram.com/abishek0411",
       color: "text-cyber-blue hover:text-cyber-purple"
     },
     {
       name: "Email",
       icon: Mail,
-      url: "mailto:abishek.dev@example.com",
+      url: "mailto:abishekram0411@gmail.com",
       color: "text-cyber-purple hover:text-cyber-pink"
     }
   ];
@@ -143,7 +149,7 @@ const ContactSection = () => {
                     <social.icon size={24} className="group-hover:animate-pulse" />
                     <div>
                       <div className="font-orbitron font-bold">{social.name}</div>
-                      <div className="text-sm opacity-70 font-fira">@abisheksr</div>
+                      <div className="text-sm opacity-70 font-fira">@abishek</div>
                     </div>
                     <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
                       →
@@ -166,10 +172,10 @@ const ContactSection = () => {
             <div className="p-6 font-fira text-sm">
               <div className="space-y-2">
                 <div className="text-cyber-green">{'> whoami'}</div>
-                <div className="ml-4 text-gray-300">Abishek S R - Full-Stack Developer</div>
+                <div className="ml-4 text-gray-300">Abishek S R - Developer</div>
                 
                 <div className="text-cyber-blue">{'>'}   location</div>
-                <div className="ml-4 text-gray-300">📍 India</div>
+                <div className="ml-4 text-gray-300">📍 Chennai, India</div>
                 
                 <div className="text-cyber-purple">{'> status'}</div>
                 <div className="ml-4 text-gray-300">🟢 Available for opportunities</div>
@@ -178,7 +184,7 @@ const ContactSection = () => {
                 <div className="ml-4 text-gray-300">🚀 AI/ML, Cloud, Full-Stack Development</div>
                 
                 <div className="text-cyber-pink">{'> fun_fact'}</div>
-                <div className="ml-4 text-gray-300">🎮 When not coding, I'm probably gaming!</div>
+                <div className="ml-4 text-gray-300">🎾 When not coding, I'm probably playing Tennis!</div>
               </div>
             </div>
           </div>
@@ -200,7 +206,7 @@ const ContactSection = () => {
         </div>
         
         <p className="text-cyber-blue mt-4 font-fira text-sm">
-          © 2024 Abishek S R. Crafted in the digital realm. 🌐
+          © 2025 Abishek S R. Crafted in the digital realm. 🌐
         </p>
       </div>
     </section>

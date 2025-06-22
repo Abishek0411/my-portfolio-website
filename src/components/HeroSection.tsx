@@ -7,7 +7,7 @@ const HeroSection = () => {
   const [showSubtext, setShowSubtext] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   
-  const heroText = "Hola Amigo! I'm Abishek";
+  const heroText = "Hey There! I'm Abishek";
   const subText = "Fullstack Dev · DevOps Pilot · LLM Explorer";
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up">
             <Button 
               className="neon-button"
-              onClick={() => window.open('#', '_blank')}
+              onClick={() => window.open('https://drive.google.com/file/d/1R5_7O8iYufVFDSvIpxgMFRxJ2i2B2qOd/view?usp=drive_link')}
             >
               <span className="mr-2">📄</span>
               View Resume

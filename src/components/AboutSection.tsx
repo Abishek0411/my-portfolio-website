@@ -6,7 +6,7 @@ const AboutSection = () => {
   
   const commands = [
     '> whoami',
-    'abishek@portfolio:~$ Computer Science Student & Full-Stack Developer',
+    'abishek@portfolio:~$ Computer Science and Engineering Student & Developer',
     '',
     '> cat about.txt',
     '🎓 CSE Student passionate about building scalable solutions',
@@ -16,12 +16,12 @@ const AboutSection = () => {
     '⚡ Always learning, always building, always innovating',
     '',
     '> ls skills/',
-    '📚 Languages: Python, JavaScript, Java, C++',
-    '🌐 Frontend: React, Next.js, TypeScript, Tailwind CSS',
-    '⚙️  Backend: Node.js, Express, Django, FastAPI',
-    '🗄️  Database: MongoDB, PostgreSQL, MySQL, Redis',
-    '☁️  Cloud: AWS, Docker, Kubernetes, CI/CD',
-    '🧠 AI/ML: TensorFlow, PyTorch, OpenAI APIs, LangChain',
+    '📚 Programming Languages: C, C++, Python, Java',
+    '🌐 Web and App Development: HTML, CSS, Javascript, Typescript, React.js, Node.js, React Native',
+    '⚙️ Databases: MySQL, PostgreSQL, MongoDB',
+    '🗄️ Frameworks & Libraries: Fast API, Flask, OpenCV, Tensorflow, Scikit-learn, PyTorch',
+    '☁️ DevOps & Cloud Tools: Docker, Kubernetes, AWS, Terraform, Ansible, Github Actions',
+    '🧠 Development Tools: Git, VS Code, XAMPP Server, Figma, Android Studio, ChatGPT, Apache',
     '',
     '> echo "Ready to collaborate!"',
     'Ready to collaborate! 🚀'
