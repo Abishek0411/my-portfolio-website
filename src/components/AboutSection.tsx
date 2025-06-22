@@ -31,14 +31,20 @@ const AboutSection = () => {
     let index = 0;
     const timer = setInterval(() => {
       if (index < commands.length) {
-        setTerminalOutput(prev => [...prev, commands[index]]);
+        const currentCommand = commands[index];
+        console.log(`Adding command ${index}: "${currentCommand}"`);
+        setTerminalOutput(prev => [...prev, currentCommand]);
         index++;
       } else {
+        console.log('All commands added, clearing timer');
         clearInterval(timer);
       }
     }, 300);
 
-    return () => clearInterval(timer);
+    return () => {
+      console.log('Cleaning up timer');
+      clearInterval(timer);
+    };
   }, []);
 
   return (
@@ -61,7 +67,7 @@ const AboutSection = () => {
         <div className="p-6 font-fira text-sm leading-relaxed min-h-[400px]">
           {terminalOutput.map((line, index) => (
             <div 
-              key={index} 
+              key={`line-${index}`}
               className={`mb-2 ${
                 line.startsWith('>') ? 'text-cyber-blue' : 
                 line.startsWith('abishek@') ? 'text-cyber-purple' :
