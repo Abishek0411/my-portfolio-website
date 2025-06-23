@@ -1,4 +1,3 @@
-
 <!-- no-contributors -->
 
 <h1 align="center">⚡ Abishek's Terminal Portfolio</h1>
