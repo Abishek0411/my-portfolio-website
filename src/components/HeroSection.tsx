@@ -9,7 +9,7 @@ const HeroSection = () => {
   const [showButtons, setShowButtons] = useState(false);
   const [showAvatar, setShowAvatar] = useState(false);
   
-  const heroText = "Hola Amigo, I'm Abishek";
+  const heroText = "Hey There! I'm Abishek";
   const subText = "Fullstack Dev · DevOps Pilot · LLM Explorer";
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const HeroSection = () => {
         {/* Main heading with typewriter effect and Avatar */}
         <div className="flex flex-col items-center mb-6">
           <h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-black glitch-text neon-text whitespace-nowrap"
+            className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-black glitch-text neon-text"
             data-text={displayText}
           >
             {displayText}
