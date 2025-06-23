@@ -40,13 +40,13 @@ const ContactSection = () => {
       name: "Instagram",
       icon: Instagram,
       url: "https://instagram.com/abishek0411",
-      color: "text-cyber-blue hover:text-cyber-purple"
+      color: "text-cyber-purple hover:text-cyber-pink"
     },
     {
       name: "Email",
       icon: Mail,
       url: "mailto:abishekram0411@gmail.com",
-      color: "text-cyber-purple hover:text-cyber-pink"
+      color: "text-cyber-pink hover:text-cyber-green"
     }
   ];
 

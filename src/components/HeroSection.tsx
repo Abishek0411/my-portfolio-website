@@ -64,7 +64,7 @@ const HeroSection = () => {
             <div className="mt-8 animate-fade-in">
               <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-cyber-green shadow-lg">
                 <AvatarImage 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face" 
+                  src={`${import.meta.env.BASE_URL}avatar.jpg`}
                   alt="Abishek S R"
                   className="object-cover"
                 />
