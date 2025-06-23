@@ -1,11 +1,13 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const HeroSection = () => {
   const [displayText, setDisplayText] = useState('');
   const [showSubtext, setShowSubtext] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
+  const [showAvatar, setShowAvatar] = useState(false);
   
   const heroText = "Hey There! I'm Abishek";
   const subText = "Fullstack Dev · DevOps Pilot · LLM Explorer";
@@ -18,7 +20,10 @@ const HeroSection = () => {
         index++;
       } else {
         clearInterval(timer);
-        setTimeout(() => setShowSubtext(true), 500);
+        setTimeout(() => {
+          setShowAvatar(true);
+          setShowSubtext(true);
+        }, 500);
         setTimeout(() => setShowButtons(true), 1500);
       }
     }, 100);
@@ -44,14 +49,32 @@ const HeroSection = () => {
           </svg>
         </div>
 
-        {/* Main heading with typewriter effect */}
-        <h1 
-          className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-black mb-6 glitch-text neon-text"
-          data-text={displayText}
-        >
-          {displayText}
-          <span className="animate-blink border-r-2 border-cyber-green ml-1"></span>
-        </h1>
+        {/* Main heading with typewriter effect and Avatar */}
+        <div className="flex flex-col items-center mb-6">
+          <h1 
+            className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-black glitch-text neon-text"
+            data-text={displayText}
+          >
+            {displayText}
+            <span className="animate-blink border-r-2 border-cyber-green ml-1"></span>
+          </h1>
+          
+          {/* Profile Avatar */}
+          {showAvatar && (
+            <div className="mt-8 animate-fade-in">
+              <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-cyber-green shadow-lg">
+                <AvatarImage 
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face" 
+                  alt="Abishek S R"
+                  className="object-cover"
+                />
+                <AvatarFallback className="text-2xl font-orbitron bg-cyber-gray text-cyber-green">
+                  AS
+                </AvatarFallback>
+              </Avatar>
+            </div>
+          )}
+        </div>
 
         {/* Subtext with fade-in */}
         {showSubtext && (
