@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import TechStack from '@/components/TechStack';
@@ -43,6 +44,15 @@ const Index = () => {
         <GitHubStats />
         <ContactSection />
       </main>
+
+      {/* Navigation to Blog */}
+      <div className="fixed top-8 right-8 z-50">
+        <Link to="/blog">
+          <Button className="neon-button border-cyber-blue text-cyber-blue hover:bg-cyber-blue hover:text-cyber-dark">
+            Blog Terminal
+          </Button>
+        </Link>
+      </div>
 
       {/* Floating scroll indicator */}
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
