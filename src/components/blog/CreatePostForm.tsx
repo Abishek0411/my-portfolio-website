@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -6,22 +6,42 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { blogService } from '@/services/blogService';
-import { CreatePostData } from '@/types/blog';
+import { CreatePostData, BlogPost as BlogPostType } from '@/types/blog';
 import { Loader2, Send } from 'lucide-react';
 
 interface CreatePostFormProps {
   onPostCreated: () => void;
+  editingPost?: BlogPostType | null;
+  onCancelEdit?: () => void;
 }
 
-const CreatePostForm = ({ onPostCreated }: CreatePostFormProps) => {
+const CreatePostForm = ({ onPostCreated, editingPost, onCancelEdit }: CreatePostFormProps) => {
   const [formData, setFormData] = useState<CreatePostData>({
-    title: '',
-    content: '',
-    author: '',
+    title: editingPost?.title || '',
+    content: editingPost?.content || '',
+    author: editingPost?.author || '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<CreatePostData>>({});
   const { toast } = useToast();
+
+  // Update form data when editingPost changes
+  React.useEffect(() => {
+    if (editingPost) {
+      setFormData({
+        title: editingPost.title,
+        content: editingPost.content,
+        author: editingPost.author,
+      });
+    } else {
+      setFormData({
+        title: '',
+        content: '',
+        author: '',
+      });
+    }
+    setErrors({});
+  }, [editingPost]);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<CreatePostData> = {};
@@ -52,12 +72,19 @@ const CreatePostForm = ({ onPostCreated }: CreatePostFormProps) => {
     setIsSubmitting(true);
     
     try {
-      await blogService.createPost(formData);
-      
-      toast({
-        title: "Success!",
-        description: "Blog post created successfully.",
-      });
+      if (editingPost) {
+        await blogService.updatePost(editingPost.title, formData);
+        toast({
+          title: "Success!",
+          description: "Blog post updated successfully.",
+        });
+      } else {
+        await blogService.createPost(formData);
+        toast({
+          title: "Success!",
+          description: "Blog post created successfully.",
+        });
+      }
       
       // Reset form
       setFormData({
@@ -73,7 +100,7 @@ const CreatePostForm = ({ onPostCreated }: CreatePostFormProps) => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to create blog post. Please try again.",
+        description: `Failed to ${editingPost ? 'update' : 'create'} blog post. Please try again.`,
         variant: "destructive",
       });
     } finally {
@@ -95,7 +122,7 @@ const CreatePostForm = ({ onPostCreated }: CreatePostFormProps) => {
         <div className="terminal-dot bg-red-500"></div>
         <div className="terminal-dot bg-yellow-500"></div>
         <div className="terminal-dot bg-green-500"></div>
-        <span className="text-cyber-green font-fira text-sm ml-4">Create New Post</span>
+        <span className="text-cyber-green font-fira text-sm ml-4">{editingPost ? 'Edit Post' : 'Create New Post'}</span>
       </div>
       
       <div className="p-6">
@@ -149,23 +176,35 @@ const CreatePostForm = ({ onPostCreated }: CreatePostFormProps) => {
             )}
           </div>
 
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className="neon-button w-full"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Publishing...
-              </>
-            ) : (
-              <>
-                <Send className="w-4 h-4 mr-2" />
-                Publish Post
-              </>
+          <div className="flex gap-4">
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="neon-button flex-1"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  {editingPost ? 'Updating...' : 'Publishing...'}
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4 mr-2" />
+                  {editingPost ? 'Update Post' : 'Publish Post'}
+                </>
+              )}
+            </Button>
+            {editingPost && onCancelEdit && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onCancelEdit}
+                className="neon-button-outline"
+              >
+                Cancel
+              </Button>
             )}
-          </Button>
+          </div>
         </form>
       </div>
     </Card>

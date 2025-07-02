@@ -1,11 +1,15 @@
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { BlogPost as BlogPostType } from '@/types/blog';
+import { Edit, Trash2 } from 'lucide-react';
 
 interface BlogPostProps {
   post: BlogPostType;
+  onEdit?: (post: BlogPostType) => void;
+  onDelete?: (title: string) => void;
 }
 
-const BlogPost = ({ post }: BlogPostProps) => {
+const BlogPost = ({ post, onEdit, onDelete }: BlogPostProps) => {
   const formatDate = (dateString?: string) => {
     if (!dateString) return '';
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -39,6 +43,31 @@ const BlogPost = ({ post }: BlogPostProps) => {
           <span className="tech-badge">
             By {post.author}
           </span>
+          
+          {(onEdit || onDelete) && (
+            <div className="flex gap-2">
+              {onEdit && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => onEdit(post)}
+                  className="neon-button-outline"
+                >
+                  <Edit className="w-4 h-4" />
+                </Button>
+              )}
+              {onDelete && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => onDelete(post.title)}
+                  className="neon-button-outline hover:bg-cyber-red/20 hover:border-cyber-red"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </Card>

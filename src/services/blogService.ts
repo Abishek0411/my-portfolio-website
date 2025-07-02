@@ -21,4 +21,15 @@ export const blogService = {
     const response = await api.post('/posts', postData);
     return response.data;
   },
+
+  // Update a blog post
+  async updatePost(title: string, postData: CreatePostData): Promise<BlogPost> {
+    const response = await api.put(`/posts/${encodeURIComponent(title)}`, postData);
+    return response.data;
+  },
+
+  // Delete a blog post
+  async deletePost(title: string): Promise<void> {
+    await api.delete(`/posts/${encodeURIComponent(title)}`);
+  },
 };

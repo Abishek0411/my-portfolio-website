@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { blogService } from '@/services/blogService';
 import { BlogPost as BlogPostType } from '@/types/blog';
 import BlogPost from '@/components/blog/BlogPost';
@@ -12,6 +22,8 @@ const Blog = () => {
   const [posts, setPosts] = useState<BlogPostType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [editingPost, setEditingPost] = useState<BlogPostType | null>(null);
+  const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; title: string }>({ open: false, title: '' });
   const { toast } = useToast();
 
   const fetchPosts = async () => {
@@ -36,7 +48,41 @@ const Blog = () => {
 
   const handlePostCreated = () => {
     setShowCreateForm(false);
+    setEditingPost(null);
     fetchPosts();
+  };
+
+  const handleEditPost = (post: BlogPostType) => {
+    setEditingPost(post);
+    setShowCreateForm(true);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingPost(null);
+    setShowCreateForm(false);
+  };
+
+  const handleDeletePost = (title: string) => {
+    setDeleteDialog({ open: true, title });
+  };
+
+  const confirmDelete = async () => {
+    try {
+      await blogService.deletePost(deleteDialog.title);
+      toast({
+        title: "Success",
+        description: "Blog post deleted successfully.",
+      });
+      fetchPosts();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete blog post. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setDeleteDialog({ open: false, title: '' });
+    }
   };
 
   if (isLoading) {
@@ -80,7 +126,14 @@ const Blog = () => {
           </div>
           
           <Button
-            onClick={() => setShowCreateForm(!showCreateForm)}
+            onClick={() => {
+              if (showCreateForm && editingPost) {
+                handleCancelEdit();
+              } else {
+                setShowCreateForm(!showCreateForm);
+                setEditingPost(null);
+              }
+            }}
             className={`neon-button ${showCreateForm ? 'bg-cyber-green text-cyber-dark' : ''}`}
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -88,10 +141,14 @@ const Blog = () => {
           </Button>
         </div>
 
-        {/* Create Post Form */}
+        {/* Create/Edit Post Form */}
         {showCreateForm && (
           <div className="mb-8 animate-fade-in-up">
-            <CreatePostForm onPostCreated={handlePostCreated} />
+            <CreatePostForm 
+              onPostCreated={handlePostCreated}
+              editingPost={editingPost}
+              onCancelEdit={handleCancelEdit}
+            />
           </div>
         )}
 
@@ -118,12 +175,37 @@ const Blog = () => {
           ) : (
             posts.map((post, index) => (
               <div key={post._id || index} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <BlogPost post={post} />
+                <BlogPost 
+                  post={post} 
+                  onEdit={handleEditPost}
+                  onDelete={handleDeletePost}
+                />
               </div>
             ))
           )}
         </div>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteDialog.open} onOpenChange={(open) => !open && setDeleteDialog({ open: false, title: '' })}>
+        <AlertDialogContent className="terminal-window border border-cyber-red/50">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-cyber-red font-orbitron">Delete Post</AlertDialogTitle>
+            <AlertDialogDescription className="text-muted-foreground font-fira">
+              Are you sure you want to delete "{deleteDialog.title}"? This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="neon-button-outline">Cancel</AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={confirmDelete}
+              className="neon-button bg-cyber-red/20 border-cyber-red text-cyber-red hover:bg-cyber-red/30"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
