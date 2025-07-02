@@ -72,7 +72,8 @@ export default {
 					yellow: '#ffff00',
 					dark: '#0a0a0a',
 					darker: '#050505',
-					gray: '#1a1a1a'
+					gray: '#1a1a1a',
+					red : '#FF0000'
 				}
 			},
 			fontFamily: {

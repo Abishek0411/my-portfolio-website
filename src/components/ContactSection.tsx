@@ -28,7 +28,7 @@ const ContactSection = () => {
       name: "GitHub",
       icon: Github,
       url: "https://github.com/Abishek0411",
-      color: "text-cyber-green hover:text-cyber-blue"
+      color: "text-cyber-red hover:text-cyber-blue"
     },
     {
       name: "LinkedIn",
